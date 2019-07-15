@@ -1,6 +1,6 @@
 import json
-from django.test import TestCase
-from graphene.test import Client
+from django.test import TestCase, Client
+from django.contrib.auth import get_user_model
 
 from e_l_p.schema import schema
 from fixtures.user_fixture import (
@@ -9,26 +9,37 @@ from fixtures.user_fixture import (
     user_query,
     user_query_response,
 )
-
+from fixtures.token_fixtures import user_token
 
 class UserQueriesTestCase(TestCase):
 
     def setUp(self):
-        self._client = Client(schema)
+        self.client = Client()
 
 
     def test_a_user_can_be_created_and_returned(self):
-        self._response = self._client.execute(user_mutation_query)
-        import pdb; pdb.set_trace()
+        self._response = self.client.post(
+            "/graphql/", json.dumps(user_mutation_query), content_type='application/json'
+        )
         self.assertEqual(
-            {"username": "test_user", "email": "test_user@gmail.com", "id": "1"},
-            dict(self._response["data"]["createUser"]["user"])
+            user_mutation_response,
+            self._response.content
         )
 
     def test_users_can_be_queried(self):
-        self._client.execute(user_mutation_query)
-        self._response = self._client.execute(user_query)
+        user = get_user_model()(
+            username="test_user",
+            email="test_user@gmail.com",
+            is_superuser=True
+        )
+        user.set_password("testy1234")
+        user.save()
+        headers = {"Authorization": "Token" + " " + user_token}
+        self._response = self.client.post(
+            "/graphql/", json.dumps(user_query),
+            content_type='application/json', HTTP_AUTHORIZATION="Token" + " " + user_token
+        )
         self.assertEqual(
-            "test_user",
-            dict(self._response["data"]["users"][0])["username"]
+            user_query_response,
+            self._response.content
         )
