@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5000:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: ""
+      POSTGRES_DB: "postgres"
+  web:
+    build: .
+    tty: true
+    command: ./docker-entrypoint.sh
+    volumes:
+      - .:/e_l_p
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
