@@ -11,7 +11,7 @@ class Course(models.Model):
 
 
 
-class UserRatings(models.Model):
+class CourseRating(models.Model):
     user = models.OneToOneField(to=user, on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     course = models.OneToOneField(to=Course, on_delete=models.CASCADE)

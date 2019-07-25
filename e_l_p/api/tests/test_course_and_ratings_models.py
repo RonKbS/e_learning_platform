@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from api.models.users import User
-from api.models.courses import Course, UserRatings
+from api.models.courses import Course, CourseRating
 
 class CourseModelTestCase(TestCase):
     """Test that a course can be created"""
@@ -31,10 +31,10 @@ class CourseModelTestCase(TestCase):
             username="test_user_1",
             email="test_user_1@gmail.com",
         )
-        count = UserRatings.objects.count()
-        UserRatings.objects.create(
+        count = CourseRating.objects.count()
+        CourseRating.objects.create(
             user=self.user_1,
             rating=5,
             course=self.course,
         )
-        self.assertEqual(UserRatings.objects.count(), count + 1)
+        self.assertEqual(CourseRating.objects.count(), count + 1)
