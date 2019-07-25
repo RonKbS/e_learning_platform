@@ -7,4 +7,4 @@ user_mutation_query = {'query': 'mutation{ createUser(username:"test_user", emai
 
 
 
-user_mutation_response = b'{"data":{"createUser":{"user":{"username":"test_user","email":"test_user@gmail.com","id":"1"}}}}'
+user_mutation_response = b'{"data":{"createUser":{"user":{"username":"test_user","email":"test_user@gmail.com","id":"4"}}}}'
