@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 
 from e_l_p.schema import schema
-from fixtures.user_fixture import (
+from fixtures.user_fixtures import (
     user_mutation_query,
     user_mutation_response,
     user_query,
@@ -34,7 +34,6 @@ class UserQueriesTestCase(TestCase):
         )
         user.set_password("testy1234")
         user.save()
-        headers = {"Authorization": "Token" + " " + user_token}
         self._response = self.client.post(
             "/graphql/", json.dumps(user_query),
             content_type='application/json', HTTP_AUTHORIZATION="Token" + " " + user_token
