@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'graphene_django',
     'pages.apps.PagesConfig',
+    'elp_frontend.apps.ElpFrontendConfig',
+    'crispy_forms',
 ]
 
 
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'e_l_p.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,3 +152,6 @@ GRAPHQL_JWT = {
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_AUTH_HEADER_PREFIX': 'Token',
 }
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
