@@ -14,6 +14,9 @@ graphene-django = "==2.2.0"
 django-filter = "==2.0.0"
 django-graphql-jwt = "==0.2.1"
 django-crispy-forms = "*"
+django-heroku = "~=0.3.1"
+whitenoise = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
