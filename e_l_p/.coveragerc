@@ -1,0 +1,6 @@
+[run]
+omit =
+    */migrations/*
+    */tests/*
+    */fixtures/*
+    *__init__.py*

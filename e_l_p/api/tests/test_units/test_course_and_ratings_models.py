@@ -52,4 +52,4 @@ class CourseModelTestCase(TestCase):
             )
         )
         self.assertEqual(CourseContent.objects.count(), count + 1)
-        os.remove("media/course_media/file.pdf")
+        os.remove("././e_l_p/media/course_media/file.pdf")

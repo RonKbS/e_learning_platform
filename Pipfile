@@ -17,6 +17,7 @@ django-crispy-forms = "*"
 django-heroku = "~=0.3.1"
 whitenoise = "*"
 gunicorn = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.7"
