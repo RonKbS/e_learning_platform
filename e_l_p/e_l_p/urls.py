@@ -26,7 +26,6 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path('', include('pages.urls')),
     path('elp/', include('elp_frontend.urls')),
     path('elp/', include('django.contrib.auth.urls')),
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

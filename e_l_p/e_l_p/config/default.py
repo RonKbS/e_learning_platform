@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'graphene_django',
-    'pages.apps.PagesConfig',
     'elp_frontend.apps.ElpFrontendConfig',
     'crispy_forms',
 ]
@@ -79,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'e_l_p.wsgi.application'
+WSGI_APPLICATION = 'e_l_p.config.wsgi.application'
 
 
 # Database
