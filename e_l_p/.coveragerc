@@ -4,3 +4,6 @@ omit =
     */tests/*
     */fixtures/*
     *__init__.py*
+
+source =
+    .
