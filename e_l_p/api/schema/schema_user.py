@@ -4,7 +4,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphql_jwt.decorators import superuser_required
 
-from .models.users import User
+from api.models.users import User
 
 
 class UserType(DjangoObjectType):

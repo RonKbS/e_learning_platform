@@ -1,0 +1,21 @@
+language: python
+python: 
+  - "3.7"
+
+addons:
+  postgresql: "9.6"
+
+install: 
+  - pip install pipenv
+  - pipenv install
+  - pip install coveralls
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - python e_l_p/manage.py migrate
+
+script:
+  - cd e_l_p && coverage run --source=. manage.py test
+
+after_success:
+  - coveralls

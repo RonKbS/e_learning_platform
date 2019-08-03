@@ -16,11 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 from graphene_django.views import GraphQLView
 
+
+from elp_frontend.views import landing_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path('', include('pages.urls'))
-]
+    path('', landing_page, name='index'),
+    path('elp/', include('elp_frontend.urls')),
+    path('elp/', include('django.contrib.auth.urls')),
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
