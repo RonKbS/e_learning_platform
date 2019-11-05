@@ -16,6 +16,6 @@ services:
     volumes:
       - .:/e_l_p
     ports:
-      - "8000:8000"
+      - "8000"
     depends_on:
       - db
